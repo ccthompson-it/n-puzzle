@@ -1,3 +1,13 @@
-import React from "react"
+import React, { Component, Fragment } from "react"
+import { DndProvider } from 'react-dnd' 
 
-export default () => <div>Hello world!</div>
+
+
+class App extends Component {
+  render() {
+    return <div>Hello world!</div>
+  }
+}
+
+
+export default App
