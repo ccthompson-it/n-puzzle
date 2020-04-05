@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+}
+
+.app {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.board {
+  width: 606px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  border: 1px black solid;
+}
