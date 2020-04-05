@@ -1,15 +1,6 @@
 import { createStore as reduxCreateStore } from "redux"
 
-const reducer = (state, action) => {
-  if (action.type === `CHANGENUM`) {
-    return {
-      num: action.newNum
-    }
-  }
-  return state
-}
+import reducer from './reducers'
 
-const initialState = { num: 0 }
-
-const createStore = () => reduxCreateStore(reducer, initialState)
+const createStore = () => reduxCreateStore(reducer)
 export default createStore
