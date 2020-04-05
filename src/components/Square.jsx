@@ -14,7 +14,7 @@ function moveText(row, column, dispatch) {
   dispatch(changePosition(row, column))
 }
 
-function checkAdjacent(text, x, y) {
+function checkDroppable(text, x, y) {
   if ((text.x + 1 === x || text.x - 1 === x) && text.y === y) { return true } 
   if ((text.y + 1 === y || text.y - 1 === y) && text.x === x) { return true } 
   return false 
@@ -32,7 +32,7 @@ function Square(props) {
 
   const { row, column, dispatch, text } = props
   const match = checkMatch(text, row, column)
-  const adjacent = checkAdjacent(text, row, column)
+  const droppable = checkDroppable(text, row, column)
 
 
   const [{ isDragging }, drag] = useDrag({
@@ -45,7 +45,7 @@ function Square(props) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.TEXT,
     drop: () => moveText(row, column, dispatch),
-    canDrop: () => adjacent,
+    canDrop: () => droppable,
     collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop()
