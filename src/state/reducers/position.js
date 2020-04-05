@@ -6,10 +6,8 @@ const initialState = {
 const position = (state = initialState, action) => {
   if (action.type === `CHANGE_POSITION`) {
     return {
-      position: {
-        x: action.x,
-        y: action.y
-      }
+      x: action.x,
+      y: action.y
     }
   }
   return state
