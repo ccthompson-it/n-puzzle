@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
 
 import Board from '../components/Board'
 
@@ -20,7 +21,9 @@ class App extends Component {
     return (
       <div className="app">
         <div className="board">
-          <Board size={boardSize} text={position} />
+          <DndProvider backend={Backend}>
+            <Board size={boardSize} text={position} />
+          </DndProvider>
         </div>
       </div>
     )

@@ -2,26 +2,32 @@ import React, { Component, Fragment } from "react"
 import { connect } from 'react-redux'
 import { changePosition } from '../state/actions'
 
+import { ItemTypes } from '../Constants'
+import { useDrag } from 'react-dnd'
 
-class Square extends Component {
-    constructor(props) {
-      super(props)
-    }
 
-    handleClick = () => {
-      const { row, column, dispatch } = this.props
-      dispatch(changePosition(row, column))
-    }
+function handleClick(row, column, dispatch) {
+  dispatch(changePosition(row, column))
+}
 
-    render() {
-      const { match } = this.props
-      return (
-        <div className="square" onClick={this.handleClick}>
-          {match && <p>Hello!</p>}
-        </div>
-      )
-    }
-  }
+
+
+function Square(props) {
+  const { row, column, dispatch, match } = props
+
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: ItemTypes.TEXT },
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging()
+    })
+  })
+
+  return (
+    <div className="square" onClick={() => handleClick(row, column, dispatch)}>
+      {match && <p ref={drag}> Hello!</p>}
+    </div>
+  )
+}
 
 
 export default connect()(Square)

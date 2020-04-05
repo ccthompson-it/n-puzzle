@@ -3,7 +3,7 @@ import Square from './Square'
 
 
 function positionMatch (text, x, y) {
-  if (text.x == x && text.y == y) { return true }
+  if (text.x === x && text.y === y) { return true }
   else { return false } 
 }
 
@@ -18,6 +18,6 @@ export default function Board({ size, text }) {
 
     }
   }
-  
+
   return squares 
 }
