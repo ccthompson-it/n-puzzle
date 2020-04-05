@@ -2,10 +2,7 @@ import React from 'react'
 import Square from './Square'
 
 
-function positionMatch (text, x, y) {
-  if (text.x === x && text.y === y) { return true }
-  else { return false } 
-}
+
 
 export default function Board({ size, text }) {
   let squares = []
@@ -13,8 +10,7 @@ export default function Board({ size, text }) {
   for (let i=0; i<size; i++) {
     for (let j=0; j<size; j++){
       
-      let match = positionMatch(text, i, j)
-      squares.push(<Square row={i} column={j} match={match}/>)
+      squares.push(<Square row={i} column={j} text={text}/>)
 
     }
   }
