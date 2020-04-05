@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { changePosition } from '../state/actions'
 
 import { ItemTypes } from '../Constants'
-import { useDrag } from 'react-dnd'
+import { useDrag, useDrop } from 'react-dnd'
 
 
-function handleClick(row, column, dispatch) {
+function moveText(row, column, dispatch) {
   dispatch(changePosition(row, column))
 }
 
@@ -22,8 +22,13 @@ function Square(props) {
     })
   })
 
+  const [, drop] = useDrop({
+    accept: ItemTypes.TEXT,
+    drop: () => moveText(row, column, dispatch),
+  })
+
   return (
-    <div className="square" onClick={() => handleClick(row, column, dispatch)}>
+    <div className="square" ref={drop}>
       {match && <p ref={drag}> Hello!</p>}
     </div>
   )
