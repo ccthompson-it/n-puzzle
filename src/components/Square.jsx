@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 import { changePosition } from '../state/actions'
 
@@ -54,7 +54,7 @@ function Square(props) {
 
   return (
     <div className="square" ref={drop}>
-      {match && <p className="middle-text" ref={drag}>Drag Me!</p>}
+      {match && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : 'Drag Me!'}</p>}
       {canDrop && !isOver && <Overlay color="yellow" />}
       {!canDrop && isOver && !match && <Overlay color="red" />}
       {canDrop && isOver && <Overlay color="green" />}

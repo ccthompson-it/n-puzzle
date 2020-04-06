@@ -10,7 +10,7 @@ export default function Board({ size, text }) {
   for (let i=0; i<size; i++) {
     for (let j=0; j<size; j++){
       
-      squares.push(<Square row={i} column={j} text={text}/>)
+      squares.push(<Square row={i} column={j} text={text} key={size*i+j}/>)
 
     }
   }
