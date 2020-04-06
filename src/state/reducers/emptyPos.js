@@ -3,7 +3,7 @@ const initialState = {
   y: 0
 }
 
-const position = (state = initialState, action) => {
+const emptyPos = (state = initialState, action) => {
   if (action.type === `CHANGE_POSITION`) {
     return {
       x: action.x,
@@ -13,4 +13,4 @@ const position = (state = initialState, action) => {
   return state
 }
 
-export default position
+export default emptyPos

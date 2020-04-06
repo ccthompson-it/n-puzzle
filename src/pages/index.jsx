@@ -20,12 +20,12 @@ class App extends Component {
 
   render() {
     const { boardSize } = this.state
-    const { position, numOrder } = this.props
+    const { emptyPos } = this.props
     return (
       <div className="app">
         <div className="board">
           <DndProvider backend={Backend}>
-            <Board size={boardSize} text={position} />
+            <Board size={boardSize} text={emptyPos} />
           </DndProvider>
         </div>
         <button onClick={this.handleScramble}>Scramble!</button>
@@ -34,9 +34,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ position, numOrder }) {
+function mapStateToProps({ emptyPos }) {
   return {
-    position
+    emptyPos
   }
 }
 

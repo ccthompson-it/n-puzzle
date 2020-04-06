@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
-import position from './position'
+import emptyPos from './emptyPos'
 import numOrder from './numOrder'
 
 export default combineReducers({
-    position,
+    emptyPos,
     numOrder
 })

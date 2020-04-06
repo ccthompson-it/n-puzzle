@@ -30,7 +30,7 @@ function checkMatch(text, x, y) {
 
 function Square(props) {
 
-  const { row, column, dispatch, text } = props
+  const { row, column, dispatch, text, id } = props
   const match = checkMatch(text, row, column)
   const droppable = checkDroppable(text, row, column)
 
