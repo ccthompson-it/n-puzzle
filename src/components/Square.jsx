@@ -10,33 +10,34 @@ import Overlay from './Overlay'
 
 
 
-function moveText(row, column, dispatch) {
-  dispatch(changePosition(row, column))
+function moveText(id, num, emptySquare, dispatch) {
+  dispatch(changePosition(id, num, emptySquare.id))
 }
 
-function checkDroppable(text, x, y) {
-  if ((text.x + 1 === x || text.x - 1 === x) && text.y === y) { return true } 
-  if ((text.y + 1 === y || text.y - 1 === y) && text.x === x) { return true } 
-  return false 
+function checkDroppable(emptySquare, x, y, selfEmpty) {
+  console.log(emptySquare, x, y, selfEmpty)
+  if (selfEmpty) {
+    if ((emptySquare.x + 1 === x || emptySquare.x - 1 === x) && emptySquare.y === y) { return true }
+    if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
+  }
+  return false
 }
-
-function checkMatch(text, x, y) {
-  if (text.x === x && text.y === y) { return true }
-  else { return false }
-}
-
 
 
 
 function Square(props) {
+  const { row, column, dispatch, id, num, emptySquare } = props
 
-  const { row, column, dispatch, text } = props
-  const match = checkMatch(text, row, column)
-  const droppable = checkDroppable(text, row, column)
-
+  const empty = num === 0 ? true : false
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.TEXT },
+    item: {
+      type: ItemTypes.TEXT,
+      id,
+      num,
+      row,
+      column
+    },
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
@@ -44,8 +45,8 @@ function Square(props) {
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.TEXT,
-    drop: () => moveText(row, column, dispatch),
-    canDrop: () => droppable,
+    drop: (res) => { moveText(res.id, res.num, emptySquare, dispatch) },
+    canDrop: (res) => checkDroppable(emptySquare, res.row, res.column, empty),
     collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop()
@@ -54,13 +55,12 @@ function Square(props) {
 
   return (
     <div className="square" ref={drop}>
-      {match && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : 'Drag Me!'}</p>}
+      {!empty && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : num}</p>}
       {canDrop && !isOver && <Overlay color="yellow" />}
-      {!canDrop && isOver && !match && <Overlay color="red" />}
+      {!canDrop && isOver && <Overlay color="red" />}
       {canDrop && isOver && <Overlay color="green" />}
     </div>
   )
 }
-
 
 export default connect()(Square)

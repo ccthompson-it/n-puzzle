@@ -27,3 +27,9 @@
   height: 200px;
   width: 200px;
 }
+
+button {
+  position: fixed;
+  top: 20vh;
+  right: 200px;
+}
