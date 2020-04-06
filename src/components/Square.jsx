@@ -14,25 +14,22 @@ function moveText(row, column, dispatch) {
   dispatch(changePosition(row, column))
 }
 
-function checkDroppable(text, x, y) {
-  if ((text.x + 1 === x || text.x - 1 === x) && text.y === y) { return true } 
-  if ((text.y + 1 === y || text.y - 1 === y) && text.x === x) { return true } 
-  return false 
-}
-
-function checkMatch(text, x, y) {
-  if (text.x === x && text.y === y) { return true }
-  else { return false }
+function checkDroppable(emptySquare, x, y) {
+  if ((emptySquare.x + 1 === x || emptySquare.x - 1 === x) && emptySquare.y === y) { return true }
+  if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
+  return false
 }
 
 
 
 
 function Square(props) {
+  const { row, column, dispatch, id, num, emptySquare } = props
 
-  const { row, column, dispatch, emptyPos, id } = props
-  const match = checkMatch(emptyPos, row, column)
-  const droppable = checkDroppable(emptyPos, row, column)
+  const empty = num === 0 ? true : false
+  const droppable = empty ? () => checkDroppable(emptySquare, row, column) : false
+
+  console.log(empty, droppable, id)
 
 
   const [{ isDragging }, drag] = useDrag({
@@ -54,9 +51,9 @@ function Square(props) {
 
   return (
     <div className="square" ref={drop}>
-      {match && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : 'Drag Me!'}</p>}
+      {!empty && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : num}</p>}
       {canDrop && !isOver && <Overlay color="yellow" />}
-      {!canDrop && isOver && !match && <Overlay color="red" />}
+      {!canDrop && isOver && <Overlay color="red" />}
       {canDrop && isOver && <Overlay color="green" />}
     </div>
   )
