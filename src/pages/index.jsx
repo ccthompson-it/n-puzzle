@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
 
 import Board from '../components/Board'
-
+import { scramble } from '../state/actions'
 
 class App extends Component {
   constructor(props) {
@@ -14,10 +14,13 @@ class App extends Component {
     }
   }
 
+  handleScramble = () => {
+    this.props.dispatch(scramble(this.state.boardSize))
+  }
 
   render() {
     const { boardSize } = this.state
-    const { position } = this.props
+    const { position, numOrder } = this.props
     return (
       <div className="app">
         <div className="board">
@@ -25,12 +28,13 @@ class App extends Component {
             <Board size={boardSize} text={position} />
           </DndProvider>
         </div>
+        <button onClick={this.handleScramble}>Scramble!</button>
       </div>
     )
   }
 }
 
-function mapStateToProps({ position }) {
+function mapStateToProps({ position, numOrder }) {
   return {
     position
   }
