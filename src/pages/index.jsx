@@ -1,10 +1,22 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { DndProvider } from 'react-dnd'
-import Backend from 'react-dnd-html5-backend'
+import HtmlBackend from 'react-dnd-html5-backend'
+import TouchBackend from 'react-dnd-touch-backend'
 
 import Board from '../components/Board'
 import { scramble } from '../state/actions'
+
+const isTouchDevice = () => {
+  if ("ontouchstart" in window) {
+    return true
+  }
+  return false
+};
+
+// Assigning backend based on touch support on the device
+const DndBackend = isTouchDevice() ? TouchBackend : HTML5Backend
+
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +35,7 @@ class App extends Component {
     return (
       <div className="app">
         <div className="board">
-          <DndProvider backend={Backend}>
+          <DndProvider backend={DndBackend}>
             <Board size={boardSize} />
           </DndProvider>
         </div>

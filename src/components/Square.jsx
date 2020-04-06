@@ -15,7 +15,6 @@ function moveText(id, num, emptySquare, dispatch) {
 }
 
 function checkDroppable(emptySquare, x, y, selfEmpty) {
-  console.log(emptySquare, x, y, selfEmpty)
   if (selfEmpty) {
     if ((emptySquare.x + 1 === x || emptySquare.x - 1 === x) && emptySquare.y === y) { return true }
     if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
