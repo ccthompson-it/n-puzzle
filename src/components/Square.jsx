@@ -14,9 +14,12 @@ function moveText(id, num, emptySquare, dispatch) {
   dispatch(changePosition(id, num, emptySquare.id))
 }
 
-function checkDroppable(emptySquare, x, y) {
-  if ((emptySquare.x + 1 === x || emptySquare.x - 1 === x) && emptySquare.y === y) { return true }
-  if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
+function checkDroppable(emptySquare, x, y, selfEmpty) {
+  console.log(emptySquare, x, y, selfEmpty)
+  if (selfEmpty) {
+    if ((emptySquare.x + 1 === x || emptySquare.x - 1 === x) && emptySquare.y === y) { return true }
+    if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
+  }
   return false
 }
 
@@ -26,17 +29,15 @@ function Square(props) {
   const { row, column, dispatch, id, num, emptySquare } = props
 
   const empty = num === 0 ? true : false
-  const droppable = empty ? () => checkDroppable(emptySquare, row, column) : false
-
-  console.log(empty, droppable, id)
-
 
   const [{ isDragging }, drag] = useDrag({
-    item: { 
+    item: {
       type: ItemTypes.TEXT,
       id,
-      num
-     },
+      num,
+      row,
+      column
+    },
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
@@ -44,8 +45,8 @@ function Square(props) {
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.TEXT,
-    drop: (res) => moveText(res.id, res.num, emptySquare, dispatch),
-    canDrop: () => droppable,
+    drop: (res) => { moveText(res.id, res.num, emptySquare, dispatch) },
+    canDrop: (res) => checkDroppable(emptySquare, res.row, res.column, empty),
     collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop()
