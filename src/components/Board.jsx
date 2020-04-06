@@ -2,10 +2,11 @@ import React from 'react'
 import Square from './Square'
 import { connect } from 'react-redux'
 
+
 function getEmptySquare(array, size) {
   let pos = {}
   for(let i=0; i<array.length; i++) {
-    if(array[i] == 0) {
+    if(array[i] === 0) {
       pos.y = i % size
       pos.x = (i - pos.y) / size
       pos.id = i
@@ -13,6 +14,7 @@ function getEmptySquare(array, size) {
   }
   return pos
 }
+
 
 function Board({ size, numOrder }) {
   let squares = []
