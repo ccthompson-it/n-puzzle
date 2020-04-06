@@ -1,11 +1,12 @@
 const CHANGE_POSITION = 'CHANGE_POSITION'
 const SCRAMBLE = 'SCRAMBLE'
 
-export function changePosition(x, y) {
+export function changePosition(id, num, emptyId) {
   return {
     type: CHANGE_POSITION,
-    x,
-    y
+    id,
+    num,
+    emptyId
   }
 }
 

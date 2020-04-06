@@ -7,7 +7,8 @@ function getEmptySquare(array, size) {
   for(let i=0; i<array.length; i++) {
     if(array[i] == 0) {
       pos.y = i % size
-      pos.x = (i - pos.y) / 3 
+      pos.x = (i - pos.y) / size
+      pos.id = i
     }
   }
   return pos

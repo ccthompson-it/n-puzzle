@@ -10,8 +10,8 @@ import Overlay from './Overlay'
 
 
 
-function moveText(row, column, dispatch) {
-  dispatch(changePosition(row, column))
+function moveText(id, num, emptySquare, dispatch) {
+  dispatch(changePosition(id, num, emptySquare.id))
 }
 
 function checkDroppable(emptySquare, x, y) {
@@ -19,7 +19,6 @@ function checkDroppable(emptySquare, x, y) {
   if ((emptySquare.y + 1 === y || emptySquare.y - 1 === y) && emptySquare.x === x) { return true }
   return false
 }
-
 
 
 
@@ -33,7 +32,11 @@ function Square(props) {
 
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.TEXT },
+    item: { 
+      type: ItemTypes.TEXT,
+      id,
+      num
+     },
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
@@ -41,7 +44,7 @@ function Square(props) {
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.TEXT,
-    drop: () => moveText(row, column, dispatch),
+    drop: (res) => moveText(res.id, res.num, emptySquare, dispatch),
     canDrop: () => droppable,
     collect: monitor => ({
       isOver: !!monitor.isOver(),
@@ -59,11 +62,4 @@ function Square(props) {
   )
 }
 
-
-function mapStateToProps({ emptyPos }) {
-  return {
-    emptyPos
-  }
-}
-
-export default connect(mapStateToProps)(Square)
+export default connect()(Square)
