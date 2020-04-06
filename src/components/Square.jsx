@@ -30,9 +30,9 @@ function checkMatch(text, x, y) {
 
 function Square(props) {
 
-  const { row, column, dispatch, text, id } = props
-  const match = checkMatch(text, row, column)
-  const droppable = checkDroppable(text, row, column)
+  const { row, column, dispatch, emptyPos, id } = props
+  const match = checkMatch(emptyPos, row, column)
+  const droppable = checkDroppable(emptyPos, row, column)
 
 
   const [{ isDragging }, drag] = useDrag({
@@ -63,4 +63,10 @@ function Square(props) {
 }
 
 
-export default connect()(Square)
+function mapStateToProps({ emptyPos }) {
+  return {
+    emptyPos
+  }
+}
+
+export default connect(mapStateToProps)(Square)

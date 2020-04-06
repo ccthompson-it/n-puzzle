@@ -20,12 +20,11 @@ class App extends Component {
 
   render() {
     const { boardSize } = this.state
-    const { emptyPos } = this.props
     return (
       <div className="app">
         <div className="board">
           <DndProvider backend={Backend}>
-            <Board size={boardSize} text={emptyPos} />
+            <Board size={boardSize} />
           </DndProvider>
         </div>
         <button onClick={this.handleScramble}>Scramble!</button>
@@ -34,10 +33,5 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ emptyPos }) {
-  return {
-    emptyPos
-  }
-}
 
-export default connect(mapStateToProps)(App)
+export default connect()(App)
