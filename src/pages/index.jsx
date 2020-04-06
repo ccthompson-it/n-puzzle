@@ -15,7 +15,7 @@ const isTouchDevice = () => {
 };
 
 // Assigning backend based on touch support on the device
-const DndBackend = isTouchDevice() ? TouchBackend : HTML5Backend
+const DndBackend = isTouchDevice() ? TouchBackend : HtmlBackend
 
 
 class App extends Component {
