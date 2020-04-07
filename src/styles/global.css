@@ -26,8 +26,10 @@
 
 .middle-text {
   border: 1px solid red;
-  padding: 46%;
-  font-family: 'Titillium Web', sans-serif;
+  /* padding: 38%; */
+  font-family: 'Baloo Da 2', display;
+  font-weight: 500;;
+  font-size: 2rem;
 }
 
 button {
