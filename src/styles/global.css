@@ -28,7 +28,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.draggable-container:hover {
+  background-color: rgb(212, 231, 238);
 }
 
 .middle-text {
@@ -36,10 +40,6 @@
   font-weight: 500;;
   font-size: 2rem;
   border-radius: 2.5%;
-}
-
-.middle-text:hover {
-  background-color: rgb(212, 231, 238);
 }
 
 button {
