@@ -26,10 +26,13 @@
 
 .middle-text {
   border: 1px solid red;
+  padding: 46%;
 }
 
 button {
   position: fixed;
   top: 20vh;
   right: 200px;
+  padding: 1em 2em 1em 2em;
+  border-radius: 5px;
 }
