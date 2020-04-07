@@ -15,21 +15,31 @@
 }
 
 .square {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   width: 200px;
   height: 200px;
   border: 1px black solid;
   cursor: pointer;
 }
 
-.middle-text {
+.draggable-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid red;
-  /* padding: 38%; */
+}
+
+.middle-text {
   font-family: 'Baloo Da 2', display;
   font-weight: 500;;
   font-size: 2rem;
+  border-radius: 2.5%;
+}
+
+.middle-text:hover {
+  background-color: rgb(212, 231, 238);
 }
 
 button {
