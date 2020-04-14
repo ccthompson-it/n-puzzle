@@ -54,10 +54,12 @@ function Square(props) {
 
   return (
     <div className="square" ref={drop}>
-      {!empty && <p className="middle-text" ref={drag}>{isDragging ? 'Weeee!' : num}</p>}
-      {canDrop && !isOver && <Overlay color="yellow" />}
-      {!canDrop && isOver && <Overlay color="red" />}
-      {canDrop && isOver && <Overlay color="green" />}
+      <div className="draggable-container" ref={drag}>
+        {!empty && <p className="middle-text" >{isDragging ? 'Weeee!' : num}</p>}
+        {canDrop && !isOver && <Overlay color="yellow" />}
+        {!canDrop && isOver && <Overlay color="red" />}
+        {canDrop && isOver && <Overlay color="green" />}
+      </div>
     </div>
   )
 }

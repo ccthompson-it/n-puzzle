@@ -6,6 +6,7 @@ import Backend from 'react-dnd-html5-backend'
 import Board from '../components/Board'
 import { scramble } from '../state/actions'
 
+
 class App extends Component {
   constructor(props) {
     super(props)
