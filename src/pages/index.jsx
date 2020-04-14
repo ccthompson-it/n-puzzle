@@ -6,13 +6,6 @@ import Backend from 'react-dnd-html5-backend'
 import Board from '../components/Board'
 import { scramble } from '../state/actions'
 
-import WebFont from 'webfontloader';
-
-WebFont.load({
-  google: {
-    families: ['Baloo Da 2:400,500,600', 'display']
-  }
-});
 
 class App extends Component {
   constructor(props) {
