@@ -33,7 +33,6 @@ class App extends Component {
 
   render() {
     const { size } = this.props.location.state
-    console.log(this.props)
     return (
       <div className="app">
         <div className="board" style={boardStyle(size)}>
@@ -42,7 +41,7 @@ class App extends Component {
           </DndProvider>
         </div>
         <button className="fixed-button scramble" onClick={this.handleScramble}>Scramble!</button>
-        <Link>
+        <Link to="/">
           <button className="fixed-button back">Change Board Size</button>
         </Link>
       </div>
