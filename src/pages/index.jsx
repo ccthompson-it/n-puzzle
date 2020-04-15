@@ -1,38 +1,32 @@
 import React, { Component } from "react"
-import { connect } from 'react-redux'
-import { DndProvider } from 'react-dnd'
-import Backend from 'react-dnd-html5-backend'
-
-import Board from '../components/Board'
-import { scramble } from '../state/actions'
-
+import { Link } from 'gatsby'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      boardSize: 3,
+      size: 4
     }
   }
 
-  handleScramble = () => {
-    this.props.dispatch(scramble(this.state.boardSize))
+  handleChange = (e) => {
+    this.setState({
+      size: e.target.value
+    })
   }
 
   render() {
-    const { boardSize } = this.state
+    const { size } = this.state
     return (
       <div className="app">
-        <div className="board">
-          <DndProvider backend={Backend}>
-            <Board size={boardSize} />
-          </DndProvider>
-        </div>
-        <button onClick={this.handleScramble}>Scramble!</button>
+        <h1>Choose Board Size!</h1>
+        <input type="number" value={size} onChange={this.handleChange} />
+        <Link to='/game/' state={{ size }}>
+          <button id="size-button">Play!</button>
+        </Link>
       </div>
     )
   }
 }
 
-
-export default connect()(App)
+export default App
