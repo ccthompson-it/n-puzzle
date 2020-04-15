@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   render() {
-    const { size } = this.props.location.state
+    const size = this.props.location.state ? this.props.location.state.size : 3
     return (
       <div className="app">
         <div className="board" style={boardStyle(size)}>
