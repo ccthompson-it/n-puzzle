@@ -9,13 +9,13 @@ import Board from '../components/Board'
 import { scramble } from '../state/actions'
 
 const isTouchDevice = () => {
-  if ((window) && ("ontouchstart" in window)) {
+  if ((typeof window !== 'undefined') && ("ontouchstart" in window)) {
     return true;
   }
   return false;
 }
 
-let backendForDND
+const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend
 
 function boardStyle(size) {
   const width = (100 * size) + (2 * size)
@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend
     this.handleScramble()
   }
 
