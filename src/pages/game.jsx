@@ -15,7 +15,7 @@ const isTouchDevice = () => {
   return false;
 }
 
-const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend
+let backendForDND
 
 function boardStyle(size) {
   const width = (100 * size) + (2 * size)
@@ -33,6 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend
     this.handleScramble()
   }
 
