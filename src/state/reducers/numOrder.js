@@ -1,6 +1,6 @@
 import { randArray } from '../../game'
 
-const initialState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+const initialState = [1, 0]
 
 const numOrder = (state = initialState, action) => {
   if (action.type === `SCRAMBLE`) {
