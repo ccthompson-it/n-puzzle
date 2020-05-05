@@ -2,6 +2,7 @@ import React from 'react'
 import Square from './Square'
 import { connect } from 'react-redux'
 
+import { checkWin } from '../game'
 
 function getEmptySquare(array, size) {
   let pos = {}
@@ -19,6 +20,10 @@ function getEmptySquare(array, size) {
 function Board({ size, numOrder }) {
   let squares = []
   let emptySquare = getEmptySquare(numOrder, size)
+
+  if(checkWin(numOrder)) {
+    alert("You Win!")
+  }
 
   for (let i=0; i<size; i++) {
     for (let j=0; j<size; j++){

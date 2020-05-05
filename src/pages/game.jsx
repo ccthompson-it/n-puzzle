@@ -35,6 +35,7 @@ class App extends Component {
     const size = this.props.location.state ? this.props.location.state.size : 3
     return (
       <div className="app">
+        <p className="middle-text">VVVVV Empty Space goes Here!</p>
         <div className="board" style={boardStyle(size)}>
           <DndProvider backend={Backend}>
             <Board size={size} />

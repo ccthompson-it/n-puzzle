@@ -1,4 +1,11 @@
-export function randArray(length) {
+module.exports = {
+  randArray,
+  checkWin
+}
+
+
+
+function randArray(length) {
   let array = []
   for(let i=0; i<length; i++) { array.push(i) }
 
@@ -18,4 +25,12 @@ export function randArray(length) {
   }
 
   return array;
+}
+
+function checkWin(gameOrder) {
+  for(let i=0; i<gameOrder.length; i++) {
+    console.log(gameOrder[i], i)
+    if(gameOrder[i] !== i) { return false }
+  }
+  return true
 }
