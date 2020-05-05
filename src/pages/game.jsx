@@ -9,7 +9,7 @@ import Board from '../components/Board'
 import { scramble } from '../state/actions'
 
 const isTouchDevice = () => {
-  if ("ontouchstart" in window) {
+  if ((window) && ("ontouchstart" in window)) {
     return true;
   }
   return false;
