@@ -5,9 +5,6 @@ import { changePosition } from '../state/actions'
 import { ItemTypes } from '../Constants'
 import { useDrag, useDrop } from 'react-dnd'
 
-import Overlay from './Overlay'
-
-
 
 
 function moveText(id, num, emptySquare, dispatch) {
@@ -51,14 +48,17 @@ function Square(props) {
       canDrop: !!monitor.canDrop()
     })
   })
+  
+  let color = null
+
+  if( canDrop && !isOver ) { color = "rgba(255, 255, 0, 0.7)" }
+  if( !canDrop && isOver ) { color = "rgba(255, 0, 0, 0.7)" }
+  if( canDrop && isOver ) { color = "rgba(0, 255, 0, 0.7)" }
 
   return (
-    <div className="square" ref={drop}>
+  <div className="square" ref={drop} style={{backgroundColor: color}}>
       <div className="draggable-container" ref={drag}>
         {!empty && <p className="middle-text" >{isDragging ? 'Weeee!' : num}</p>}
-        {canDrop && !isOver && <Overlay color="yellow" />}
-        {!canDrop && isOver && <Overlay color="red" />}
-        {canDrop && isOver && <Overlay color="green" />}
       </div>
     </div>
   )

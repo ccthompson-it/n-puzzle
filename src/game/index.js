@@ -29,7 +29,6 @@ function randArray(length) {
 
 function checkWin(gameOrder) {
   for(let i=0; i<gameOrder.length; i++) {
-    console.log(gameOrder[i], i)
     if(gameOrder[i] !== i) { return false }
   }
   return true
